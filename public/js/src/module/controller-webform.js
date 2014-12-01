@@ -277,7 +277,7 @@ define( [ 'gui', 'connection', 'settings', 'enketo-js/Form', 'enketo-js/FormMode
                 }
             } );
 
-            if ( inIframe() && settings.parentWindowOrigin ) {
+            if ( inIframe() ) {
                 $( document ).on( 'submissionsuccess edited', postEventAsMessageToParentWindow );
             }
         }
@@ -312,7 +312,7 @@ define( [ 'gui', 'connection', 'settings', 'enketo-js/Form', 'enketo-js/FormMode
                 try {
                     window.parent.postMessage( JSON.stringify( {
                         enketoEvent: event.type
-                    } ), settings.parentWindowOrigin );
+                    } ), "*" );
                 } catch ( error ) {
                     console.error( error );
                 }
